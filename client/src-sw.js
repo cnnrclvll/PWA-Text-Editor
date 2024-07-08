@@ -43,4 +43,19 @@ registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 // for navigation requests serve from cache first
 
 // TODO: Implement asset caching
-registerRoute();
+registerRoute(
+  ({ request }) => ['style', 'script', 'worker'].includes(request.destination),
+  // ^ matching function
+  // ^ check if request destination is style script or worker
+  new StaleWhileRevalidate({
+    // caching strategy to serve relevant cached assets
+    // ..fetch most recent version of asset and update it in cache
+    cacheName: 'asset-cache',
+    plugins: [
+      new CacheableResponsePlugin({
+        // only cache for status codes 0 or 200
+        statuses: [0, 200],
+      }),
+    ],
+  })
+);
