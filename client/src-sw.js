@@ -42,7 +42,6 @@ warmStrategyCache({
 registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 // for navigation requests serve from cache first
 
-// TODO: Implement asset caching
 registerRoute(
   ({ request }) => ['style', 'script', 'worker'].includes(request.destination),
   // ^ matching function
