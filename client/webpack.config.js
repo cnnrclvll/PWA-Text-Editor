@@ -16,7 +16,6 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 // webpack config //
 // --- object --- //
 // -------------- //
-
 module.exports = () => {
   return {
     mode: 'development',
@@ -47,16 +46,25 @@ module.exports = () => {
       new WebpackPwaManifest({
       // creates PWA Manifest file
         fingerprints: false,
+          // ^ disable unique hashing of manifest filename
         inject: true,
+          // ^ inject manifest link into created HTML file
+          // ^ applies PWA config to HTML
         name: 'Just Another Text Editor',
         short_name: 'J.A.T.E',
         description: 'Takes notes with JavaScript syntax highlighting!',
+          // ^ app info
         background_color: '#225ca3',
         theme_color: '#225ca3',
+          // ^ UI colors
         start_url: '/',
+          // ^ user entry URL of app
+          // ^ root
         publicPath: '/',
+          // ^ relative path of assets
+          // ^ root
         icons: [
-          {
+          { // icon specs
             src: path.resolve('src/images/logo.png'),
             sizes: [96, 128, 192, 256, 384, 512],
             destination: path.join('assets', 'icons'),
@@ -67,21 +75,20 @@ module.exports = () => {
 
     module: {
       rules: [
-        {
+        { // process css files
           test: /\.css$/i,
-          use: [MiniCssExtractPlugin.loader, 'css-loader'],
+          use: ['style-loader', 'css-loader'],
         },
-        {
-          test: /\.(png|svg|jpg|jpeg|gif)$/i,
-          type: 'asset/resource',
-        },
-        {
+        { // process js files
           test: /\.m?js$/,
-          exclude: /(node_modules|bower_components)/,
+          exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
             options: {
               presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
+                // ^ allows rest and merge of objects
+                // ^ prevent duplication of functions in babel using runtime
             },
           },
         },
