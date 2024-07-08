@@ -40,8 +40,8 @@ THEN I find that IndexedDB has immediately created a database storage -->
 THEN I find that the content in the text editor has been saved with IndexedDB
 WHEN I reopen the text editor after closing it
 THEN I find that the content in the text editor has been retrieved from our IndexedDB -->
-WHEN I click on the Install button
-THEN I download my web application as an icon on my desktop
+<!-- WHEN I click on the Install button
+THEN I download my web application as an icon on my desktop -->
 <!-- WHEN I load my web application
 THEN I should have a registered service worker using workbox -->
 <!-- WHEN I register a service worker
