@@ -33,7 +33,7 @@ export const putDb = async (content) => {
   // ^ log result
 };
 
-// TODO: Add logic for a method that gets all the content from the database
+// get content from DB
 export const getDb = async () => {
   console.log('Get from database');
   const database = await openDB('jate', 1);
