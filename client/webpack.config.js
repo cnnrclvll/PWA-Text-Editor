@@ -8,10 +8,7 @@ const path = require('path');
   // node module for directory paths
 const { InjectManifest } = require('workbox-webpack-plugin');
   // custom service worker
-
-// TODO: Add and configure workbox plugins for a service worker and manifest file.
-// TODO: Add CSS loaders and babel to webpack.
-
+  
 // --- EXPORT --- //
 // webpack config //
 // --- object --- //
